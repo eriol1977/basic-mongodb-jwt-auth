@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "2e94fc33-8a26-4dce-bef1-08cbb2b818e9",
+		"name": "Basic MongoDB JWT Auth API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Francesco Bertolino\",\r\n    \"email\": \"francesco.bertolino@gmail.com\",\r\n    \"password\": \"lonewolf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"francesco.bertolino@gmail.com\",\r\n    \"password\": \"lonewolf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get logged in user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNDUyYzM2MTdkNTUyZjBjMDY0ZGM1In0sImlhdCI6MTU5NTE2NzQyOCwiZXhwIjoxNTk1NTI3NDI4fQ.GANgGKtgNaAzdNG_psHV0Xg4O08Bzn-j0fHFGinxMpg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add test object",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNDUyYzM2MTdkNTUyZjBjMDY0ZGM1In0sImlhdCI6MTU5NTE2NzQyOCwiZXhwIjoxNTk1NTI3NDI4fQ.GANgGKtgNaAzdNG_psHV0Xg4O08Bzn-j0fHFGinxMpg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"field1\" : \"Test Number Two\",\r\n    \"field2\": \"Interesting New Value\",\r\n    \"field3\": \"2020-07-19T16:04:43.511Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get test objects",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNDUyYzM2MTdkNTUyZjBjMDY0ZGM1In0sImlhdCI6MTU5NTE2NzQyOCwiZXhwIjoxNTk1NTI3NDI4fQ.GANgGKtgNaAzdNG_psHV0Xg4O08Bzn-j0fHFGinxMpg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update test object",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNDUyYzM2MTdkNTUyZjBjMDY0ZGM1In0sImlhdCI6MTU5NTE2NzQyOCwiZXhwIjoxNTk1NTI3NDI4fQ.GANgGKtgNaAzdNG_psHV0Xg4O08Bzn-j0fHFGinxMpg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"field2\" : \"Updated Value\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/test/5f1454f2617d552f0c064dc8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"test",
+						"5f1454f2617d552f0c064dc8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete test object",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWYxNDUyYzM2MTdkNTUyZjBjMDY0ZGM1In0sImlhdCI6MTU5NTE2NzQyOCwiZXhwIjoxNTk1NTI3NDI4fQ.GANgGKtgNaAzdNG_psHV0Xg4O08Bzn-j0fHFGinxMpg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/test/5f1454f2617d552f0c064dc8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"test",
+						"5f1454f2617d552f0c064dc8"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
