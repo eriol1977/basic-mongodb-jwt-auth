@@ -1,0 +1,69 @@
+This project should serve as a template to create NodeJS APIs with user authentication based on JWT and MongoDB.
+The MongoDB connection URL is provided in the default.json configuration file, along with the JWT secret.
+
+A new user can be registered with the POST http://localhost:4000/api/users route, providing user info in the following format:
+{
+  "name" : "Francesco Bertolino",
+  "email": "francesco.bertolino@gmail.com",
+  "password": "lonewolf"
+}
+where "email" is the unique username, and "password" will be saved in its encrypted form.
+Users are registered in the 'users' collection.
+
+Login happens through the POST http://localhost:4000/api/auth route, providing the following info:
+{
+  "email": "francesco.bertolino@gmail.com",
+  "password": "lonewolf"
+}
+
+The GET http://localhost:4000/api/auth route returns the logged in user's info in json format.
+
+The routes provided in test.js, together with the sample Test model, provide examples of how to execute CRUD actions
+protected by the authorization middleware (middleware/auth.js). Any "private" operation must provide the token returned by the
+login in the "x-auth-token" key in the request header, otherwise it won't be executed.
+
+The Basic MongoDB JWT Auth API.postman_collection.json file (in config), which can be imported in the Postman HTTP client,
+provides samples of all API requests.
+
+The React frontend is placed inside the client folder.
+It provides full Register/Login/Logout functionalities and an Alert system.
+There is a base Home component in which all other components can be placed.
+
+----------------------------------------------------------------------------------
+
+HOW TO DEPLOY FULL-STACK APP TO HEROKU (with heroku cli installed: https://devcenter.heroku.com/articles/heroku-cli):
+
+1) open server.js and add these lines BELOW the defined routes:
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  // for any path that is not one of those defined before, returns the index.html file
+  // (which is placed in <<current dir>>/client/build)
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  );
+}
+
+2) create production.json file in the config folder, with the same fields of default.json, but possibly with a different DB, etc.
+
+3) to build the client, we could use 'cd client' and then 'npm run build' (--> creates a production build of the client in the 'build' folder) every time, or use a post build on th server:
+in the package.json of the backend, create a new script "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" (stops the production server, then installs all the dependencies inside the client folder, then runs the client build)
+Obs: if in server.js there is something like:
+app.get('/', (req, res) =>
+   res.json({ msg: 'Welcome to the ContactKeeper API...' })
+);
+comment it or delete it, or once the app has been deployed, it will show this message instead of the index.html page!
+
+4) in the root folder of the project (NOT the client folder): 
+heroku login
+heroku create
+click on the created app in Heroku web portal, go to Deploy tab, copy the git remote config (es: heroku git:remote -a morning-falls-57332) and run it in VSCode terminal --> adds heroku as a remote repository
+
+5) to deploy (repeat the following steps any time to update the deploy!)
+check that the local git repository is updated, by committing the new files
+git push heroku master --> pushes the local git repository to heroku
+
+6) to run the app, open the provided URL, or simply type in 'heroku open'

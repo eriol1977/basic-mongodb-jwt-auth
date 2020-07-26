@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://eriol1977:aECrYyRaKigMJ9Cn@contactkeeper.igvkp.mongodb.net/basic-jwt-auth?retryWrites=true&w=majority",
+  "jwtSecret": "LiVut7gX2PGwydKDhD3cnZEueWYAzpTpfInnKfVlNDFTcLVmCg4Pt8U3XvNqpqg"
+}
