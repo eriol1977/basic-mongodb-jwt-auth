@@ -14,7 +14,7 @@ const Login = (props) => {
       props.history.push('/'); // redirect in React
     }
 
-    if (error === 'Invalid credentials') {
+    if (error) {
       setAlert(error, 'danger');
       clearErrors();
     }

@@ -14,8 +14,10 @@ const Register = (props) => {
       props.history.push('/'); // redirect in React
     }
 
-    setAlert(error, 'danger');
-    clearErrors();
+    if (error) {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
 
     //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
@@ -77,7 +79,7 @@ const Register = (props) => {
             value={password}
             onChange={onChange}
             required
-            minLength='6'
+            minLength='8'
           />
         </div>
         <div className='form-group'>
@@ -88,6 +90,7 @@ const Register = (props) => {
             value={password2}
             onChange={onChange}
             required
+            minLength='8'
           />
         </div>
         <input

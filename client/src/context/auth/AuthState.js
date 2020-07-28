@@ -61,9 +61,12 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (err) {
+      let errData = err.response.data.msg
+        ? err.response.data.msg
+        : err.response.data.errors[0].msg;
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.errors[0].msg, // because the server sends back a json object with an array of errors
+        payload: errData, // because the server sends back a json object with an array of errors
       });
     }
   };
@@ -85,9 +88,12 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (err) {
+      let errData = err.response.data.msg
+        ? err.response.data.msg
+        : err.response.data.errors[0].msg;
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg, // because the server sends back a json object with the msg field
+        payload: errData,
       });
     }
   };
